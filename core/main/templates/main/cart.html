@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+    {% block title %}Shopping Cart{% endblock %}
+</head>
+<body>
+    {% block page_name %}Your Shopping Cart{% endblock %}
+    {% block content %}
+    <ul id="cart-items">
+        {% for i in cart %}
+            <li> {{ i.product.name }} ({{ i.quantity }})
+                ${{ i.product.price}} * {{i.quantity}}
+                
+            <img src="{{i.product.img.url}}"  alt="" width="100px">
+            <form action="{% url 'delete' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" name="prod_id" value="{{i.id}}" >X</button>
+            </form>
+
+                <hr>
+                {% empty %}
+                <p>Your cart is empty.</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <h3>Sum = $ {{ summ }}</h3>
+    <a href="{% url 'index' %}">Back to Products</a>
+    <a href="{% url 'pay' %}">Pay Now!</a>
+    <a href="{% url 'deliver' %}">Pay when Delivered!</a>
+
+    {% endblock %}
+
+</body>
+</html>

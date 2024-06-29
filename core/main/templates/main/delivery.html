@@ -1,0 +1,50 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<section class="contact_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4 col-md-5 offset-md-1">
+        <div class="heading_container">
+          <h2>Contact Us</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">    
+      <div class="col-lg-4 col-md-5 offset-md-1">
+        <div class="form_container contact-form">
+          <form method="post">
+            {% csrf_token %} 
+            <div>
+              <input type="text" name="name" placeholder="Enter your Full Name" />
+            </div>
+            <div>
+                <input type="email" name="email" placeholder="Enter your Email" />
+              </div>
+            <div>
+              <input type="text" name="phone" placeholder="Enter your Phone Number" />
+            </div>
+            <div>
+                <input type="text" name="address" placeholder="Enter your Address" />
+              </div>
+            <div>
+              <input type="text" name="message" class="message-box" placeholder="Message" />
+            </div>
+            <div class="btn_box">
+              <button type="submit">SEND</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+    <!-- Display total price and quantity -->
+    <div>
+      <p>Total Price: ${{ summ }}</p>
+      <p>Quantity of Items : {{ quantity }}</p>
+    </div>
+  </div>
+</section>
+<!-- end contact section -->
+{% endblock %}

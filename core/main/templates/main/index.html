@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+    {% block title %}All Products{% endblock %}
+
+</head>
+<body>
+    {% block page_name %}All Products{% endblock %}
+    {% block content %}
+
+    <a href="/cart">View Cart({{cart.count}})</a>
+
+    <form action="{% url  'add' %}" method="post">
+        {% csrf_token %}
+
+        <ul id="product-list">
+            {% for i in product %}
+                <li>
+                    <div>
+                        <h3>{{ i.name }} </h3>
+                        <p>Price: ${{ i.price }}</p>
+                        <img src="{{ i.img.url }}" alt="{{ i.name }} Image">
+
+                    </div>
+                    <button type="submit" name="prod_id" value="{{ i.id }}">Add to Cart</button>
+                    <hr>
+                </li>
+            {% endfor %}
+        </ul>
+    </form>
+    {% endblock %}
+
+</body>
+</html>
